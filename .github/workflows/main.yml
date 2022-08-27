@@ -3,7 +3,7 @@ name: depoly to docker
 on:
   push:
     branches:
-      - 'master'
+      - 'main'
 
 jobs:
   docker:
@@ -24,6 +24,27 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_USERNAME }}
           password: ${{ secrets.DOCKERHUB_TOKEN }}
+      -
+        name: Build and push Reverseproxy
+        uses: docker/build-push-action@v3
+        with:
+          context: ./udagram-reverseproxy
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/reverseproxy:v1
+      -
+        name: Build and push udagram-api-feed
+        uses: docker/build-push-action@v3
+        with:
+          context: ./udagram-api-feed
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-feed:v1
+      -
+        name: Build and push udagram-api-user
+        uses: docker/build-push-action@v3
+        with:
+          context: ./udagram-api-user
+          push: true
+          tags: ${{ secrets.DOCKERHUB_USERNAME }}/udagram-api-user:v1
       -
         name: Build and push udagram-frontend
         uses: docker/build-push-action@v3
