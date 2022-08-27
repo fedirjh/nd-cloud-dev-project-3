@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  namespace: default
+  name: cmap
+data:
+   AWS_BUCKET: ndg-s3-dev
+   AWS_REGION: us-east-1
+   AWS_PROFILE: default
+   URL: http://localhost:8100
