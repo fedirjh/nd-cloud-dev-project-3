@@ -1,9 +1,9 @@
-name: ci
+name: depoly to docker
 
 on:
   push:
     branches:
-      - 'main'
+      - 'master'
 
 jobs:
   docker:
